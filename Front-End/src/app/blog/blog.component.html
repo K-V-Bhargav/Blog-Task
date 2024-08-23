@@ -1,0 +1,20 @@
+<div class="blog-container">
+    <div class="blog-post" *ngFor="let x of blog">
+      <h2>{{ x.title }}</h2>
+      <p>{{ x.content }}</p>
+      <span class="date">{{ x.date | date }}</span>
+      <div class="button-container">
+        <button class="btn update-btn" (click)="editPost(x)">Update</button>
+        <button class="btn delete-btn" (click)="onDelete(x._id)">Delete</button>
+      </div>
+      <div *ngIf="edit" class="update-form">
+        <h3>Edit Post</h3>
+        <form (ngSubmit)="onUpdate(editPostId, { title: updatedTitle, content: updatedContent })">
+          <input [(ngModel)]="updatedTitle" name="updatedTitle" placeholder="New Title" required>
+          <textarea [(ngModel)]="updatedContent" name="updatedContent" placeholder="New Content" required></textarea>
+          <button type="submit" class="btn save-btn">Save Changes</button>
+        </form>
+    </div>
+    </div>
+</div>
+  
